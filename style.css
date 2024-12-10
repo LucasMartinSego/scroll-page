@@ -4,12 +4,14 @@
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
 }
+
 .container {
   width: 100%;
   height: 100vh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
+
 .slides {
   width: 100%;
   height: 100vh;
@@ -19,21 +21,205 @@
   gap: 50px;
   color: #fff;
   scroll-snap-align: start;
+  flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+  padding: 20px;
+  text-align: center; /* Centra el texto en pantallas pequeñas */
 }
+
 .slides img {
-  width: 350px;
+  width: 100%; /* La imagen se adapta al tamaño de la pantalla */
+  height: auto;
+  max-width: 600px; /* Evita que la imagen crezca demasiado en pantallas grandes */
+  object-fit: cover; /* Mantiene la relación de aspecto */
 }
+
 .slides h2 {
-  font-size: 70px;
+  font-size: 5vw; /* Tamaño relativo basado en el ancho de la pantalla */
   font-weight: 600;
   max-width: 650px;
+  margin-top: 20px; /* Separa el texto de la imagen */
 }
+
+/* Fondo de las diapositivas */
 .slide1 {
   background: linear-gradient(454deg, #4f4080, #9553ff);
 }
+
 .slide2 {
   background: linear-gradient(454deg, #404c80, #53ff88);
 }
+
 .slide3 {
   background: linear-gradient(454deg, #9574ff, #ff5353);
+}
+
+/* Contenedor del reproductor */
+.audio-player-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  width: 100%;
+  padding: 0 10px;
+}
+
+/* Contenedor del reproductor (con los controles) */
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: auto;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Estilo del botón de Play/Pause */
+.audio-btn {
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 50%;
+  color: #007bff;
+  font-size: 30px;
+  padding: 15px;
+  cursor: pointer;
+  width: 60px; /* Tamaño fijo */
+  height: 60px; /* Tamaño fijo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efecto al pasar el mouse sobre el botón */
+.audio-btn:hover {
+  background-color: #007bff;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* Barra de progreso */
+.audio-progress {
+  width: 300px;
+  height: 6px;
+  background: #e1e1e1;
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.audio-progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #007bff;
+  cursor: pointer;
+}
+
+.audio-progress::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #007bff;
+  cursor: pointer;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+  .slides {
+    gap: 30px; /* Menos espacio entre los elementos */
+    padding: 10px; /* Menos padding en pantallas más pequeñas */
+  }
+
+  .slides h2 {
+    font-size: 7vw; /* Ajuste dinámico en pantallas más pequeñas */
+  }
+
+  .audio-player-container {
+    bottom: 20px;
+  }
+
+  .audio-progress {
+    width: 200px; /* Barra de progreso más pequeña */
+  }
+}
+
+@media (max-width: 480px) {
+  .slides {
+    gap: 20px;
+    flex-direction: column; /* Asegura que todo se apile verticalmente */
+  }
+
+  .slides img {
+    width: 90%; /* Ajusta el tamaño de la imagen en pantallas muy pequeñas */
+  }
+
+  .slides h2 {
+    font-size: 9vw; /* Mayor tamaño de fuente en pantallas muy pequeñas */
+    max-width: 90%; /* Limita el ancho del texto */
+    margin-top: 10px;
+  }
+
+  .audio-player {
+    padding: 8px 12px;
+  }
+
+  .audio-btn {
+    padding: 12px;
+    font-size: 25px;
+  }
+
+  .audio-progress {
+    width: 150px; /* Barra de progreso aún más pequeña */
+  }
+}
+
+/* Estilo para el contenedor del botón */
+.location-btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Estilo del botón de ubicación */
+.location-btn {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 18px;
+  padding: 15px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efecto al pasar el mouse sobre el botón */
+.location-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Media queries para ajustarlo en pantallas pequeñas */
+@media (max-width: 768px) {
+  .location-btn {
+    font-size: 16px;
+    padding: 12px 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .location-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
 }
